@@ -94,5 +94,69 @@
     "description": "益田の名湯を小瓶に詰めたもの。使うと体力が回復し、次の3ターンはマイナスイベントの効果が半減します。",
     "effect": { "type": "resist", "value": 3 },
     "rarity": "rare"
+  },
+  {
+    "id": "item_013",
+    "name": "益田の塩",
+    "icon": "🧂",
+    "description": "益田沿岸で取れた天然塩のお守り。使うとご縁の風が吹き、3マス余分に前進できます！",
+    "effect": { "type": "move", "value": 3 },
+    "rarity": "common"
+  },
+  {
+    "id": "item_014",
+    "name": "石見焼のお皿",
+    "icon": "🍽️",
+    "description": "石見地方の伝統陶器・石見焼の丈夫なお皿。次に他人の物件に止まっても家賃を1回払わずに済みます。",
+    "effect": { "type": "rent_block", "value": 1 },
+    "rarity": "uncommon"
+  },
+  {
+    "id": "item_015",
+    "name": "高津川鮎釣り券",
+    "icon": "🎣",
+    "description": "高津川の特別鮎釣り許可証。今年度の年収入時に、自分の物件からの収入が2倍になります！",
+    "effect": { "type": "income_boost", "value": 2 },
+    "rarity": "rare"
+  },
+  {
+    "id": "item_016",
+    "name": "浜田港のカニ",
+    "icon": "🦀",
+    "description": "浜田港で水揚げされた立派なカニ。これを使って取引すると、最もお金持ちのプレイヤーから物件を一つ奪えます！",
+    "effect": { "type": "steal_property", "value": 1 },
+    "rarity": "epic"
+  },
+  {
+    "id": "item_017",
+    "name": "人麻呂和歌",
+    "icon": "📖",
+    "description": "柿本人麻呂が詠んだ名歌の写し。その霊験で運気が上昇し、カードをさらに2枚引けます！",
+    "effect": { "type": "extra_card", "value": 2 },
+    "rarity": "uncommon"
+  },
+  {
+    "id": "item_018",
+    "name": "益田の花火",
+    "icon": "🎆",
+    "description": "益田の夏祭りを彩る花火。打ち上げると全プレイヤーが興奮して1500円ずつ使ってしまいます…",
+    "effect": { "type": "all_minus", "value": -1500 },
+    "rarity": "uncommon"
+  },
+  {
+    "id": "item_019",
+    "name": "道の駅クーポン",
+    "icon": "🎟️",
+    "description": "道の駅 柿の里のお得なクーポン券。次に物件を購入するとき、費用が半額になります！",
+    "effect": { "type": "shop_discount", "value": 0.5 },
+    "rarity": "rare"
+  },
+  {
+    "id": "item_020",
+    "name": "雪舟の筆",
+    "icon": "🖌️",
+    "description": "雪舟が使ったとされる伝説の筆。これで指差すと、ドタバタくんが最もお金持ちの対戦相手へ乗り移ります！",
+    "effect": { "type": "dotabata_transfer", "value": 1 },
+    "rarity": "epic"
   }
 ]

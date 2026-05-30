@@ -3,6 +3,8 @@
  */
 
 import boardData from '@data/board.json'
+import destinationsData from '@data/destinations.json'
+import shopsData from '@data/shops.json'
 
 // ── Money helpers ──────────────────────────────────────────────────────────
 
@@ -32,6 +34,45 @@ export function calculateMoneyChange(squareType, playerMoney) {
  */
 export function calculateShopBonus(isFirstVisit) {
   return isFirstVisit ? 1000 : 200
+}
+
+// ── Destination helpers ────────────────────────────────────────────────────
+
+/**
+ * Pick a random destination that is not already assigned to another player.
+ * @param {string|null} excludeSquareId - Current destination squareId to avoid reassigning.
+ * @param {string[]} takenSquareIds - Square IDs already assigned to other players.
+ * @returns {object} A destination object from destinations.json
+ */
+export function pickRandomDestination(excludeSquareId = null, takenSquareIds = []) {
+  const available = destinationsData.filter(
+    d => d.squareId !== excludeSquareId && !takenSquareIds.includes(d.squareId)
+  )
+  // If all are taken, fall back to just excluding current player's own destination
+  const pool = available.length > 0
+    ? available
+    : destinationsData.filter(d => d.squareId !== excludeSquareId)
+  // Last resort: use entire list
+  const finalPool = pool.length > 0 ? pool : destinationsData
+  return finalPool[Math.floor(Math.random() * finalPool.length)]
+}
+
+/**
+ * Calculate the destination bonus based on current year (scales with progression).
+ * @param {number} year - Current game year.
+ * @returns {number} Bonus amount in yen.
+ */
+export function calculateDestBonus(year) {
+  return 8000 + year * 2000
+}
+
+/**
+ * Calculate property purchase cost for a shop (formula-based).
+ * @param {object} shop - Shop object from shops.json
+ * @returns {number} Purchase cost in yen.
+ */
+export function calculatePropertyCost(shop) {
+  return shop.cost || 3000
 }
 
 // ── Item effects ───────────────────────────────────────────────────────────
@@ -102,18 +143,15 @@ export function applyItemEffect(item, gameState) {
     }
 
     case 'move': {
-      const currentSquare = boardData.squares.find(s => s.id === player.position)
-      if (currentSquare) {
-        const path = getSquarePath(player.position, item.effect.value, boardData)
-        const destination = path[path.length - 1]
-        const movedPlayers = gameState.players.map((p, i) =>
-          i === gameState.currentPlayerIndex
-            ? { ...p, position: destination }
-            : p
-        )
-        patch.players = movedPlayers
-        patch.pendingLanding = destination
-      }
+      const path = getSquarePath(player.position, item.effect.value, boardData)
+      const destination = path[path.length - 1] || player.position
+      const movedPlayers = gameState.players.map((p, i) =>
+        i === gameState.currentPlayerIndex
+          ? { ...p, position: destination }
+          : p
+      )
+      patch.players = movedPlayers
+      patch.pendingLanding = destination
       break
     }
 
@@ -155,21 +193,130 @@ export function applyItemEffect(item, gameState) {
       break
     }
 
+    case 'rent_block': {
+      // Mark player with a rent block flag (checked in landOnSquare)
+      const blockedPlayers = gameState.players.map((p, i) =>
+        i === gameState.currentPlayerIndex
+          ? { ...p, rentBlock: (p.rentBlock || 0) + 1 }
+          : p
+      )
+      patch.players = blockedPlayers
+      break
+    }
+
+    case 'income_boost': {
+      // Mark player with income boost multiplier for next year-end
+      const boostedPlayers = gameState.players.map((p, i) =>
+        i === gameState.currentPlayerIndex
+          ? { ...p, incomeBoost: item.effect.value }
+          : p
+      )
+      patch.players = boostedPlayers
+      break
+    }
+
+    case 'steal_property': {
+      // Steal one shop from the richest opponent
+      if (gameState.players.length > 1) {
+        const { shopOwners } = gameState
+        // Find richest opponent
+        const opponents = gameState.players.filter((p, i) => i !== gameState.currentPlayerIndex)
+        const richest = opponents.reduce((best, p) => (p.money > best.money ? p : best), opponents[0])
+        if (richest && richest.ownedShops && richest.ownedShops.length > 0) {
+          // Steal the first shop
+          const stolenShopId = richest.ownedShops[0]
+          const newShopOwners = { ...shopOwners, [stolenShopId]: player.id }
+          const updatedPlayers = gameState.players.map(p => {
+            if (p.id === richest.id) {
+              return { ...p, ownedShops: p.ownedShops.filter(id => id !== stolenShopId) }
+            }
+            if (p.id === player.id) {
+              return { ...p, ownedShops: [...p.ownedShops, stolenShopId] }
+            }
+            return p
+          })
+          patch.players = updatedPlayers
+          patch.shopOwners = newShopOwners
+        }
+      }
+      break
+    }
+
+    case 'extra_card': {
+      // Draw extra item cards (add random items to hand)
+      const { value } = item.effect
+      // Handled in the store where itemsData is available
+      patch.pendingExtraCards = value
+      break
+    }
+
+    case 'all_minus': {
+      // All players lose money
+      const amount = item.effect.value // negative value
+      const penalizedPlayers = gameState.players.map(p =>
+        ({ ...p, money: Math.max(0, p.money + amount) })
+      )
+      patch.players = penalizedPlayers
+      break
+    }
+
+    case 'shop_discount': {
+      // Next property purchase at discounted cost
+      const discountedPlayers = gameState.players.map((p, i) =>
+        i === gameState.currentPlayerIndex
+          ? { ...p, shopDiscount: item.effect.value }
+          : p
+      )
+      patch.players = discountedPlayers
+      break
+    }
+
+    case 'dotabata_transfer': {
+      // Transfer ドタバタくん to the richest opponent
+      if (gameState.dotabataActive) {
+        const opponents = gameState.players.filter((p, i) => i !== gameState.currentPlayerIndex)
+        if (opponents.length > 0) {
+          const richestOpponent = opponents.reduce(
+            (best, p) => (p.money > best.money ? p : best),
+            opponents[0]
+          )
+          // Remove from current player, attach to richest opponent
+          const updatedPlayers = gameState.players.map(p => {
+            if (p.id === player.id) return { ...p, hasDotabata: false }
+            if (p.id === richestOpponent.id) return { ...p, hasDotabata: true }
+            return p
+          })
+          patch.players = updatedPlayers
+          patch.dotabataTargetId = richestOpponent.id
+        }
+      }
+      break
+    }
+
     default:
       break
   }
 
-  // Remove the used item from the player's inventory
+  // Remove the used item from the player's inventory (items array = one-time-use)
+  // Cards (cards array) are also removed after use
   if (!patch.players) {
     patch.players = gameState.players.map((p, i) =>
       i === gameState.currentPlayerIndex
-        ? { ...p, items: p.items.filter(id => id !== item.id) }
+        ? {
+            ...p,
+            items: p.items.filter(id => id !== item.id),
+            cards: (p.cards || []).filter(id => id !== item.id),
+          }
         : p
     )
   } else {
     patch.players = patch.players.map((p, i) =>
       i === gameState.currentPlayerIndex
-        ? { ...p, items: p.items.filter(id => id !== item.id) }
+        ? {
+            ...p,
+            items: p.items.filter(id => id !== item.id),
+            cards: (p.cards || []).filter(id => id !== item.id),
+          }
         : p
     )
   }
@@ -181,19 +328,22 @@ export function applyItemEffect(item, gameState) {
 
 /**
  * Check if any player has won the game.
- * Win condition: player is on a goal square at end of maxRounds,
- * OR all rounds are spent and highest money wins.
+ * Win condition: player is on a goal square at end of maxYears,
+ * OR all years are spent and highest money wins.
  *
  * @param {object} gameState - Full game state
  * @returns {null | { winner: object, reason: string }} Null if game ongoing.
  */
 export function checkWinCondition(gameState) {
-  const { players, round, maxRounds, currentPlayerIndex } = gameState
+  const { players, round, year, maxRounds, currentPlayerIndex } = gameState
+
+  // Use year if available, fall back to round for backward compat
+  const currentYear = year ?? round ?? 1
 
   // Goal square detection is handled directly in landOnSquare.
   // Here we only check if all rounds are exhausted.
   const isLastTurn =
-    round >= maxRounds &&
+    currentYear >= maxRounds &&
     currentPlayerIndex === players.length - 1
 
   if (isLastTurn) {
@@ -279,6 +429,7 @@ export function getWrappingPath(fromId, steps, board = boardData) {
  */
 export function applyEventEffect(event, gameState) {
   const patch = {}
+  const player = gameState.players[gameState.currentPlayerIndex]
 
   switch (event.effect.type) {
     case 'money': {
@@ -301,7 +452,6 @@ export function applyEventEffect(event, gameState) {
     }
 
     case 'move': {
-      const player = gameState.players[gameState.currentPlayerIndex]
       const steps = event.effect.value
       if (steps >= 0) {
         const path = getWrappingPath(player.position, steps, boardData)
@@ -329,6 +479,84 @@ export function applyEventEffect(event, gameState) {
     case 'item': {
       // Grant a random item — handled by the store
       patch.grantRandomItem = true
+      break
+    }
+
+    case 'property_income_double': {
+      // Flag: this year-end income is doubled for the current player
+      patch.players = gameState.players.map((p, i) =>
+        i === gameState.currentPlayerIndex
+          ? { ...p, incomeBoost: 2 }
+          : p
+      )
+      break
+    }
+
+    case 'lose_property': {
+      // Remove the first owned shop from current player
+      if (player.ownedShops && player.ownedShops.length > 0) {
+        const lostShopId = player.ownedShops[0]
+        const newShopOwners = { ...gameState.shopOwners }
+        delete newShopOwners[lostShopId]
+        patch.shopOwners = newShopOwners
+        patch.players = gameState.players.map((p, i) =>
+          i === gameState.currentPlayerIndex
+            ? { ...p, ownedShops: p.ownedShops.filter(id => id !== lostShopId) }
+            : p
+        )
+      }
+      break
+    }
+
+    case 'all_money': {
+      // All players gain money
+      const amount = event.effect.value
+      patch.players = gameState.players.map(p => ({
+        ...p,
+        money: p.money + amount,
+      }))
+      break
+    }
+
+    case 'dotabata_penalty': {
+      // Penalty only if current player hasDotabata
+      if (player.hasDotabata) {
+        const amount = event.effect.value // negative
+        patch.players = gameState.players.map((p, i) =>
+          i === gameState.currentPlayerIndex
+            ? { ...p, money: Math.max(0, p.money + amount) }
+            : p
+        )
+      }
+      break
+    }
+
+    case 'teleport_to_start': {
+      // Move current player back to sq_00 and give pass bonus
+      const PASS_BONUS = 2000
+      patch.players = gameState.players.map((p, i) =>
+        i === gameState.currentPlayerIndex
+          ? { ...p, position: 'sq_00', money: p.money + PASS_BONUS }
+          : p
+      )
+      // No pendingLanding for start square — just resolve it
+      break
+    }
+
+    case 'draw_card': {
+      // Grant random item card(s) — handled by store
+      patch.grantRandomItem = true
+      break
+    }
+
+    case 'property_bonus': {
+      // All players with owned shops get a flat bonus this turn
+      const bonusPerShop = event.effect.value
+      patch.players = gameState.players.map(p => {
+        const shopCount = (p.ownedShops || []).length
+        if (shopCount === 0) return p
+        return { ...p, money: p.money + bonusPerShop * shopCount }
+      })
       break
     }
 

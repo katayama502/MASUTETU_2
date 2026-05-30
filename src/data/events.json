@@ -51,7 +51,7 @@
   {
     "id": "ev_008",
     "title": "柿本人麻呂の御利益",
-    "description": "柿本神社で参拝したら、旅の神様の御利益がありました！サイコロを追加でもう一度振れます。",
+    "description": "柿本神社で参拝したら、旅の神様の御利益がありました！2マス追加で前進します。",
     "icon": "⛩️",
     "effect": { "type": "move", "value": 2 }
   },
@@ -103,5 +103,75 @@
     "description": "益田に珍しい大雪が降り、道路が通行止めに。宿代や食費がかさんでしまいました。",
     "icon": "❄️",
     "effect": { "type": "money", "value": -2500 }
+  },
+  {
+    "id": "ev_016",
+    "title": "不動産バブル！",
+    "description": "益田の観光ブームで不動産価値が急上昇！今年度の物件収入が2倍になります。",
+    "icon": "📈",
+    "effect": { "type": "property_income_double", "value": 1 }
+  },
+  {
+    "id": "ev_017",
+    "title": "隣人トラブル…",
+    "description": "近隣とのトラブルが起きてしまいました。物件の一つが行政に没収されてしまいます。",
+    "icon": "😰",
+    "effect": { "type": "lose_property", "value": 1 }
+  },
+  {
+    "id": "ev_018",
+    "title": "島根県観光キャンペーン！",
+    "description": "島根県が全国向けに大規模観光キャンペーンを開始！訪れる観光客が急増し、全員のおこづかいが増えました。",
+    "icon": "🗾",
+    "effect": { "type": "all_money", "value": 2000 }
+  },
+  {
+    "id": "ev_019",
+    "title": "ドタバタくんが暴れた！",
+    "description": "ドタバタくんが大暴れ！もし憑かれているなら、¥3000を失ってしまいます。",
+    "icon": "👹",
+    "effect": { "type": "dotabata_penalty", "value": -3000 }
+  },
+  {
+    "id": "ev_020",
+    "title": "益田駅へ緊急帰還",
+    "description": "急用ができて益田駅前まで戻ることに。でも通過ボーナスはしっかりもらえます！",
+    "icon": "🚃",
+    "effect": { "type": "teleport_to_start", "value": 1 }
+  },
+  {
+    "id": "ev_021",
+    "title": "拾い物！",
+    "description": "益田の路地裏で誰かが落としたカードを拾いました。手持ちに加えましょう！",
+    "icon": "🃏",
+    "effect": { "type": "draw_card", "value": 1 }
+  },
+  {
+    "id": "ev_022",
+    "title": "大漁祭りで賑わい！",
+    "description": "益田港で大漁祭りが開催。物件に人が集まり、今月はすべての物件の収入が+¥500になります。",
+    "icon": "🎉",
+    "effect": { "type": "property_bonus", "value": 500 }
+  },
+  {
+    "id": "ev_023",
+    "title": "益田マラソン大会",
+    "description": "益田マラソンが開催され、全国からランナーが集まりました。商売繁盛で¥1800の臨時収入！",
+    "icon": "🏃",
+    "effect": { "type": "money", "value": 1800 }
+  },
+  {
+    "id": "ev_024",
+    "title": "台風直撃…",
+    "description": "大型台風が益田を直撃。修繕費がかかり、¥3000の出費になってしまいました。",
+    "icon": "🌀",
+    "effect": { "type": "money", "value": -3000 }
+  },
+  {
+    "id": "ev_025",
+    "title": "益田産日本酒が全国金賞",
+    "description": "益田の酒蔵が全国新酒鑑評会で金賞を受賞！地元ブランド価値が上昇し、¥4500の臨時収入！",
+    "icon": "🍶",
+    "effect": { "type": "money", "value": 4500 }
   }
 ]

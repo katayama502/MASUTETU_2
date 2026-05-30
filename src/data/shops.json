@@ -8,7 +8,11 @@
     "hours": "7:00〜18:00（水曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_02"
+    "squareId": "sq_02",
+    "cost": 2500,
+    "income": 400,
+    "rent": 600,
+    "level": 1
   },
   {
     "id": "shop_002",
@@ -19,7 +23,11 @@
     "hours": "11:00〜14:30 / 17:00〜21:00（火曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_05"
+    "squareId": "sq_05",
+    "cost": 4000,
+    "income": 600,
+    "rent": 900,
+    "level": 2
   },
   {
     "id": "shop_003",
@@ -30,7 +38,11 @@
     "hours": "9:00〜19:00（不定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_08"
+    "squareId": "sq_08",
+    "cost": 3000,
+    "income": 500,
+    "rent": 700,
+    "level": 1
   },
   {
     "id": "shop_004",
@@ -41,7 +53,11 @@
     "hours": "11:30〜14:00 / 18:00〜22:00（月曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_10"
+    "squareId": "sq_10",
+    "cost": 3500,
+    "income": 550,
+    "rent": 800,
+    "level": 1
   },
   {
     "id": "shop_005",
@@ -52,7 +68,11 @@
     "hours": "9:00〜17:00（12月〜3月冬季休業）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_12"
+    "squareId": "sq_12",
+    "cost": 3000,
+    "income": 450,
+    "rent": 650,
+    "level": 1
   },
   {
     "id": "shop_006",
@@ -63,7 +83,11 @@
     "hours": "10:00〜16:30（月・火曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_14"
+    "squareId": "sq_14",
+    "cost": 6000,
+    "income": 900,
+    "rent": 1400,
+    "level": 2
   },
   {
     "id": "shop_007",
@@ -74,7 +98,11 @@
     "hours": "9:00〜18:00（年中無休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_16"
+    "squareId": "sq_16",
+    "cost": 4500,
+    "income": 700,
+    "rent": 1000,
+    "level": 2
   },
   {
     "id": "shop_008",
@@ -85,7 +113,11 @@
     "hours": "11:00〜日没まで（火曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_18"
+    "squareId": "sq_18",
+    "cost": 5000,
+    "income": 750,
+    "rent": 1100,
+    "level": 2
   },
   {
     "id": "shop_009",
@@ -96,7 +128,11 @@
     "hours": "9:30〜17:00（木曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_20"
+    "squareId": "sq_20",
+    "cost": 3500,
+    "income": 550,
+    "rent": 800,
+    "level": 1
   },
   {
     "id": "shop_010",
@@ -107,7 +143,11 @@
     "hours": "12:00〜20:00（月曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_22"
+    "squareId": "sq_22",
+    "cost": 4000,
+    "income": 650,
+    "rent": 950,
+    "level": 2
   },
   {
     "id": "shop_011",
@@ -118,7 +158,11 @@
     "hours": "10:00〜17:00（日・月曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_24"
+    "squareId": "sq_24",
+    "cost": 5000,
+    "income": 800,
+    "rent": 1200,
+    "level": 2
   },
   {
     "id": "shop_012",
@@ -129,7 +173,11 @@
     "hours": "7:00〜12:00（水・日曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_26"
+    "squareId": "sq_26",
+    "cost": 5500,
+    "income": 850,
+    "rent": 1300,
+    "level": 2
   },
   {
     "id": "shop_013",
@@ -140,7 +188,11 @@
     "hours": "チェックイン14:00〜 チェックアウト〜11:00",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_28"
+    "squareId": "sq_28",
+    "cost": 7000,
+    "income": 1100,
+    "rent": 1700,
+    "level": 3
   },
   {
     "id": "shop_014",
@@ -151,7 +203,11 @@
     "hours": "11:00〜15:00 / 18:00〜23:00（日曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_03"
+    "squareId": "sq_03",
+    "cost": 2000,
+    "income": 350,
+    "rent": 500,
+    "level": 1
   },
   {
     "id": "shop_015",
@@ -162,7 +218,11 @@
     "hours": "9:00〜19:30（無休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_04"
+    "squareId": "sq_04",
+    "cost": 2000,
+    "income": 300,
+    "rent": 500,
+    "level": 1
   },
   {
     "id": "shop_016",
@@ -173,7 +233,11 @@
     "hours": "11:00〜14:00（7月〜10月のみ営業）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_13"
+    "squareId": "sq_13",
+    "cost": 4500,
+    "income": 700,
+    "rent": 1000,
+    "level": 2
   },
   {
     "id": "shop_017",
@@ -184,7 +248,11 @@
     "hours": "10:00〜17:00（日・月曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_15"
+    "squareId": "sq_15",
+    "cost": 5500,
+    "income": 850,
+    "rent": 1300,
+    "level": 2
   },
   {
     "id": "shop_018",
@@ -195,7 +263,11 @@
     "hours": "10:00〜17:00（土日のみ営業）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_17"
+    "squareId": "sq_17",
+    "cost": 3000,
+    "income": 450,
+    "rent": 650,
+    "level": 1
   },
   {
     "id": "shop_019",
@@ -206,7 +278,11 @@
     "hours": "10:00〜17:00（木曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_21"
+    "squareId": "sq_21",
+    "cost": 3500,
+    "income": 500,
+    "rent": 750,
+    "level": 1
   },
   {
     "id": "shop_020",
@@ -217,7 +293,11 @@
     "hours": "9:00〜18:00（日曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_09"
+    "squareId": "sq_09",
+    "cost": 2500,
+    "income": 400,
+    "rent": 600,
+    "level": 1
   },
   {
     "id": "shop_021",
@@ -228,7 +308,11 @@
     "hours": "10:00〜17:00（火曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_19"
+    "squareId": "sq_19",
+    "cost": 4500,
+    "income": 700,
+    "rent": 1000,
+    "level": 2
   },
   {
     "id": "shop_022",
@@ -239,7 +323,11 @@
     "hours": "9:00〜16:30（水・木曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_23"
+    "squareId": "sq_23",
+    "cost": 4000,
+    "income": 600,
+    "rent": 900,
+    "level": 1
   },
   {
     "id": "shop_023",
@@ -250,7 +338,11 @@
     "hours": "8:00〜13:00（月・火曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_25"
+    "squareId": "sq_25",
+    "cost": 3000,
+    "income": 450,
+    "rent": 650,
+    "level": 1
   },
   {
     "id": "shop_024",
@@ -261,7 +353,11 @@
     "hours": "11:30〜14:30 / 17:00〜20:30（水曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_27"
+    "squareId": "sq_27",
+    "cost": 6000,
+    "income": 950,
+    "rent": 1500,
+    "level": 2
   },
   {
     "id": "shop_025",
@@ -272,7 +368,11 @@
     "hours": "9:30〜17:00（月曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_29"
+    "squareId": "sq_29",
+    "cost": 8000,
+    "income": 1200,
+    "rent": 2000,
+    "level": 3
   },
   {
     "id": "shop_026",
@@ -283,7 +383,11 @@
     "hours": "10:00〜18:00（火曜定休）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_06"
+    "squareId": "sq_06",
+    "cost": 3000,
+    "income": 500,
+    "rent": 750,
+    "level": 1
   },
   {
     "id": "shop_027",
@@ -294,6 +398,10 @@
     "hours": "6:00〜17:00（7月〜9月のみ）",
     "photo": "/images/shops/placeholder.svg",
     "url": "",
-    "squareId": "sq_11"
+    "squareId": "sq_11",
+    "cost": 3500,
+    "income": 550,
+    "rent": 800,
+    "level": 1
   }
 ]

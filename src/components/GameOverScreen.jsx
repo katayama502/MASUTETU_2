@@ -31,8 +31,9 @@ function formatMoney(amount) {
 
 export default function GameOverScreen({ onBackToTitle }) {
   const players = useGameStore((s) => s.players)
-  const round = useGameStore((s) => s.round)
-  const maxRounds = useGameStore((s) => s.maxRounds)
+  const year = useGameStore((s) => s.year ?? s.round ?? 1)
+  const maxYears = useGameStore((s) => s.maxYears ?? s.maxRounds ?? 12)
+  const shopOwners = useGameStore((s) => s.shopOwners ?? {})
   const initGame = useGameStore((s) => s.initGame)
 
   // Sort players by money descending
@@ -112,7 +113,7 @@ export default function GameOverScreen({ onBackToTitle }) {
             {winner?.name} の優勝！
           </h1>
           <p className="text-sm" style={{ color: 'rgba(255,248,230,0.6)', fontFamily: 'var(--font-body)' }}>
-            全{maxRounds}ラウンド終了
+            全{maxYears}年終了
           </p>
         </div>
 
@@ -173,9 +174,26 @@ export default function GameOverScreen({ onBackToTitle }) {
                       {player.name}
                       {player.isBot && <span className="ml-1 text-xs opacity-60">🤖</span>}
                     </div>
-                    <div className="text-xs mt-0.5"
-                      style={{ color: 'rgba(255,248,230,0.5)', fontFamily: 'var(--font-body)' }}>
-                      🏪 {player.visitedShops?.length || 0}軒訪問
+                    <div
+                      className="flex gap-2 mt-0.5 flex-wrap"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
+                      <span className="text-xs" style={{ color: 'rgba(255,248,230,0.5)' }}>
+                        🏪 {player.visitedShops?.length || 0}軒訪問
+                      </span>
+                      {(() => {
+                        const owned = Object.entries(shopOwners).filter(([, pid]) => pid === player.id).length
+                        return owned > 0 ? (
+                          <span className="text-xs" style={{ color: 'rgba(255,179,71,0.8)' }}>
+                            🏠 {owned}軒所有
+                          </span>
+                        ) : null
+                      })()}
+                      {(player.destinationsReached || 0) > 0 && (
+                        <span className="text-xs" style={{ color: 'rgba(255,215,0,0.7)' }}>
+                          🎯×{player.destinationsReached}
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -252,6 +270,85 @@ export default function GameOverScreen({ onBackToTitle }) {
                         }}
                       >
                         🏪 {shop.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+
+        {/* Property portfolio section */}
+        {Object.keys(shopOwners).length > 0 && (
+          <div
+            className="rounded-2xl p-5 mb-6"
+            style={{
+              background: 'rgba(255,255,255,0.07)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              backdropFilter: 'blur(12px)',
+            }}
+          >
+            <div
+              className="text-sm font-bold tracking-widest mb-4 text-center"
+              style={{ color: 'rgba(255,215,0,0.8)', fontFamily: 'var(--font-heading)' }}
+            >
+              ─ 物件ポートフォリオ ─
+            </div>
+            {rankedPlayers.map((player) => {
+              const color = player.color || '#E85D04'
+              const ownedShopIds = Object.entries(shopOwners)
+                .filter(([, pid]) => pid === player.id)
+                .map(([sid]) => sid)
+              const ownedShopData = ownedShopIds
+                .map((sid) => (shops || []).find((s) => s.id === sid))
+                .filter(Boolean)
+              if (ownedShopData.length === 0) return null
+              const totalIncome = ownedShopData.reduce((sum, s) => sum + (s.income || 0), 0)
+              return (
+                <div key={player.id} className="mb-4 last:mb-0">
+                  <div
+                    className="flex items-center justify-between mb-2"
+                    style={{ fontFamily: 'var(--font-heading)' }}
+                  >
+                    <div className="flex items-center gap-2 text-sm font-bold"
+                      style={{ color: 'rgba(255,248,230,0.85)' }}>
+                      <div className="w-3 h-3 rounded-full flex-shrink-0"
+                        style={{ background: color }} />
+                      {player.name}
+                      <span style={{ fontSize: '11px', color: 'rgba(255,248,230,0.5)' }}>
+                        🏠×{ownedShopData.length}
+                      </span>
+                    </div>
+                    {totalIncome > 0 && (
+                      <span
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: 700,
+                          color: '#2D9E6B',
+                          background: 'rgba(45,158,107,0.12)',
+                          border: '1px solid rgba(45,158,107,0.3)',
+                          borderRadius: '999px',
+                          padding: '1px 8px',
+                        }}
+                      >
+                        年収入 +¥{totalIncome.toLocaleString('ja-JP')}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 ml-5">
+                    {ownedShopData.map((shop) => (
+                      <span
+                        key={shop.id}
+                        className="text-xs px-2 py-1 rounded-full"
+                        style={{
+                          background: `${color}22`,
+                          color: color,
+                          border: `1px solid ${color}44`,
+                          fontFamily: 'var(--font-body)',
+                        }}
+                      >
+                        🏠 {shop.name}
                       </span>
                     ))}
                   </div>

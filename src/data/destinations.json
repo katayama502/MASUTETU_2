@@ -1,0 +1,128 @@
+[
+  {
+    "id": "dest_001",
+    "squareId": "sq_02",
+    "shopId": "shop_001",
+    "name": "駅前珈琲 ますだや",
+    "description": "益田駅前の老舗喫茶店でモーニングを楽しもう",
+    "baseBonus": 8000,
+    "icon": "☕"
+  },
+  {
+    "id": "dest_002",
+    "squareId": "sq_05",
+    "shopId": "shop_002",
+    "name": "海鮮食堂 浜の幸",
+    "description": "日本海の新鮮なノドグロ定食を味わおう",
+    "baseBonus": 10000,
+    "icon": "🐟"
+  },
+  {
+    "id": "dest_003",
+    "squareId": "sq_08",
+    "shopId": "shop_003",
+    "name": "益田和菓子 雪月堂",
+    "description": "雪舟ゆかりの和菓子「雪舟まんじゅう」をお土産に",
+    "baseBonus": 9000,
+    "icon": "🍡"
+  },
+  {
+    "id": "dest_004",
+    "squareId": "sq_11",
+    "shopId": "shop_027",
+    "name": "鮎友釣り体験",
+    "description": "益田川で清流の鮎釣りを体験しよう",
+    "baseBonus": 10000,
+    "icon": "🎣"
+  },
+  {
+    "id": "dest_005",
+    "squareId": "sq_14",
+    "shopId": "shop_006",
+    "name": "雪舟庭 茶房 芙蓉",
+    "description": "国宝庭園を望む茶房で一服",
+    "baseBonus": 12000,
+    "icon": "🏯"
+  },
+  {
+    "id": "dest_006",
+    "squareId": "sq_16",
+    "shopId": "shop_007",
+    "name": "道の駅 柿の里ますだ",
+    "description": "益田の特産品をまとめ買いしよう",
+    "baseBonus": 9000,
+    "icon": "🏪"
+  },
+  {
+    "id": "dest_007",
+    "squareId": "sq_18",
+    "shopId": "shop_008",
+    "name": "日本海岸テラス カフェ シーサイド",
+    "description": "日本海を眺めながら地魚バーガーを",
+    "baseBonus": 11000,
+    "icon": "🌊"
+  },
+  {
+    "id": "dest_008",
+    "squareId": "sq_20",
+    "shopId": "shop_009",
+    "name": "人麻呂参道 ことぶき",
+    "description": "柿本人麻呂神社の参道でお土産を",
+    "baseBonus": 9000,
+    "icon": "⛩️"
+  },
+  {
+    "id": "dest_009",
+    "squareId": "sq_23",
+    "shopId": "shop_022",
+    "name": "柿本神社 ひとまろ庵",
+    "description": "人麻呂だんごとほうじ茶で縁起を担ごう",
+    "baseBonus": 10000,
+    "icon": "🍵"
+  },
+  {
+    "id": "dest_010",
+    "squareId": "sq_26",
+    "shopId": "shop_012",
+    "name": "しおさい市場",
+    "description": "朝獲れの新鮮な魚を買いに益田漁港へ",
+    "baseBonus": 11000,
+    "icon": "🦐"
+  },
+  {
+    "id": "dest_011",
+    "squareId": "sq_28",
+    "shopId": "shop_013",
+    "name": "ゲストハウス つばさ屋",
+    "description": "古民家ゲストハウスで旅の疲れを癒そう",
+    "baseBonus": 12000,
+    "icon": "🏠"
+  },
+  {
+    "id": "dest_012",
+    "squareId": "sq_29",
+    "shopId": "shop_025",
+    "name": "石見神楽 衣装館",
+    "description": "石見神楽の衣装と面に圧倒されよう",
+    "baseBonus": 14000,
+    "icon": "🎭"
+  },
+  {
+    "id": "dest_013",
+    "squareId": "sq_13",
+    "shopId": "shop_016",
+    "name": "高津川 あゆの里",
+    "description": "日本一の清流のアユ料理を堪能しよう",
+    "baseBonus": 11000,
+    "icon": "🍽️"
+  },
+  {
+    "id": "dest_014",
+    "squareId": "sq_24",
+    "shopId": "shop_011",
+    "name": "益田民芸 てのひら工房",
+    "description": "石州和紙の手作り体験で思い出を作ろう",
+    "baseBonus": 10000,
+    "icon": "🎨"
+  }
+]

@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect } from 'react'
 import useGameStore from '../store/gameStore'
 import Board from './Board'
 import GameHUD from './GameHUD'
@@ -8,6 +8,11 @@ import ShopModal from './ShopModal'
 import EventModal from './EventModal'
 import ItemModal from './ItemModal'
 import GameOverScreen from './GameOverScreen'
+import PropertyModal from './PropertyModal'
+import DestinationModal from './DestinationModal'
+import YearEndModal from './YearEndModal'
+import DestinationBanner from './DestinationBanner'
+import CardHand from './CardHand'
 
 export default function GameScreen({ onBackToTitle }) {
   const phase = useGameStore((s) => s.phase)
@@ -16,18 +21,22 @@ export default function GameScreen({ onBackToTitle }) {
   const activeShop = useGameStore((s) => s.activeShop)
   const activeEvent = useGameStore((s) => s.activeEvent)
   const activeItem = useGameStore((s) => s.activeItem)
+  const activeBuyProperty = useGameStore((s) => s.activeBuyProperty)
+  const activeDestinationReached = useGameStore((s) => s.activeDestinationReached)
+  const activeYearEnd = useGameStore((s) => s.activeYearEnd)
 
-  const rollDice    = useGameStore((s) => s.rollDice)
-  const dismissShop  = useGameStore((s) => s.dismissShop)
+  const rollDice = useGameStore((s) => s.rollDice)
+  const dismissShop = useGameStore((s) => s.dismissShop)
   const dismissEvent = useGameStore((s) => s.dismissEvent)
-  const dismissItem  = useGameStore((s) => s.dismissItem)
+  const dismissItem = useGameStore((s) => s.dismissItem)
+  const dismissDestinationReached = useGameStore((s) => s.dismissDestinationReached)
+  const dismissYearEnd = useGameStore((s) => s.dismissYearEnd)
 
   const currentPlayer = players[currentPlayerIndex]
   const isBot = currentPlayer?.isBot ?? false
 
   // ── Bot AI: auto-advance through all phases ──────────────────────────────
 
-  // Bot rolls dice automatically
   useEffect(() => {
     if (phase === 'rolling' && isBot) {
       const t = setTimeout(() => rollDice(), 1400)
@@ -35,7 +44,6 @@ export default function GameScreen({ onBackToTitle }) {
     }
   }, [phase, isBot, rollDice])
 
-  // Bot auto-dismisses shop modal
   useEffect(() => {
     if (phase === 'shop' && isBot) {
       const t = setTimeout(() => dismissShop(), 1800)
@@ -43,7 +51,6 @@ export default function GameScreen({ onBackToTitle }) {
     }
   }, [phase, isBot, dismissShop])
 
-  // Bot auto-dismisses event modal
   useEffect(() => {
     if (phase === 'event' && isBot) {
       const t = setTimeout(() => dismissEvent(), 1600)
@@ -51,13 +58,47 @@ export default function GameScreen({ onBackToTitle }) {
     }
   }, [phase, isBot, dismissEvent])
 
-  // Bot auto-dismisses item modal
   useEffect(() => {
     if (phase === 'item' && isBot) {
       const t = setTimeout(() => dismissItem(), 1400)
       return () => clearTimeout(t)
     }
   }, [phase, isBot, dismissItem])
+
+  // Bot auto-decides property purchase
+  useEffect(() => {
+    if (phase === 'buy_property' && isBot) {
+      const t = setTimeout(() => {
+        const state = useGameStore.getState()
+        const bot = state.players[state.currentPlayerIndex]
+        if (
+          state.activeBuyProperty &&
+          bot.money - (state.activeBuyProperty.shop?.cost || 0) >= 3000
+        ) {
+          state.buyProperty(state.activeBuyProperty.shop.id)
+        } else {
+          state.skipBuyProperty()
+        }
+      }, 2000)
+      return () => clearTimeout(t)
+    }
+  }, [phase, isBot])
+
+  // Bot auto-dismisses destination reached
+  useEffect(() => {
+    if (phase === 'destination_reached' && isBot) {
+      const t = setTimeout(() => dismissDestinationReached(), 2500)
+      return () => clearTimeout(t)
+    }
+  }, [phase, isBot, dismissDestinationReached])
+
+  // Year-end: bot auto-dismisses; human must click
+  useEffect(() => {
+    if (phase === 'year_end' && isBot) {
+      const t = setTimeout(() => dismissYearEnd(), 3000)
+      return () => clearTimeout(t)
+    }
+  }, [phase, isBot, dismissYearEnd])
 
   // ── Render ────────────────────────────────────────────────────────────────
 
@@ -96,11 +137,10 @@ export default function GameScreen({ onBackToTitle }) {
           </span>
           <span
             className="text-xs hidden sm:block"
-            style={{ color: 'rgba(255,248,230,0.5)' }}
+            style={{ color: 'rgba(255,248,230,0.45)' }}
           >
             益田市をめぐる旅
           </span>
-          {/* Phase badge */}
           <PhaseBadge phase={phase} />
         </div>
 
@@ -151,33 +191,49 @@ export default function GameScreen({ onBackToTitle }) {
           <div className="flex-1 min-h-0 p-3">
             <GameLog />
           </div>
+          {/* Card hand at bottom of left panel */}
+          <CardHand />
         </div>
 
         {/* Right panel: Board */}
         <div
-          className="relative overflow-hidden flex items-center justify-center"
+          className="relative overflow-hidden flex flex-col"
           style={{ background: '#F5ECD7', minHeight: '400px' }}
         >
-          <Board />
+          {/* Destination banner above board */}
+          <div className="flex-shrink-0 p-2">
+            <DestinationBanner />
+          </div>
+
+          {/* Board fills remaining space */}
+          <div className="flex-1 relative overflow-hidden flex items-center justify-center">
+            <Board />
+          </div>
         </div>
       </div>
 
-      {/* Modals — only show for human player turns, bots see them briefly then auto-close */}
-      {activeShop  && <ShopModal />}
+      {/* Modals */}
+      {activeShop && <ShopModal />}
       {activeEvent && <EventModal />}
-      {activeItem  && <ItemModal />}
+      {activeItem && <ItemModal />}
+      {activeBuyProperty && <PropertyModal />}
+      {activeDestinationReached && <DestinationModal />}
+      {activeYearEnd && <YearEndModal />}
     </div>
   )
 }
 
 function PhaseBadge({ phase }) {
   const config = {
-    rolling: { label: 'サイコロを振ろう', color: '#FFD700' },
-    moving:  { label: '移動中…',         color: '#87CEEB' },
-    landing: { label: 'マスに到着',       color: '#90EE90' },
-    shop:    { label: 'お店情報',         color: '#FFB347' },
-    event:   { label: 'イベント発生！',   color: '#DDA0DD' },
-    item:    { label: 'アイテム取得！',   color: '#98FB98' },
+    rolling:              { label: 'サイコロを振ろう',   color: '#FFD700' },
+    moving:               { label: '移動中…',           color: '#87CEEB' },
+    landing:              { label: 'マスに到着',         color: '#90EE90' },
+    shop:                 { label: 'お店情報',           color: '#FFB347' },
+    event:                { label: 'イベント発生！',     color: '#DDA0DD' },
+    item:                 { label: 'アイテム取得！',     color: '#98FB98' },
+    buy_property:         { label: '物件購入',           color: '#FFB347' },
+    destination_reached:  { label: '目的地到達！',       color: '#FFD700' },
+    year_end:             { label: '年度終了',           color: '#87CEEB' },
   }
   const c = config[phase]
   if (!c) return null
