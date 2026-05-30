@@ -1,13 +1,6 @@
 import useGameStore from '../store/gameStore'
 import boardData from '../data/board.json'
 
-const PLAYER_COLORS = {
-  orange: '#E85D04',
-  blue:   '#1a4fff',
-  green:  '#2D9E6B',
-  purple: '#9333ea',
-}
-
 function formatMoney(amount) {
   if (typeof amount !== 'number') return '¥0'
   return '¥' + amount.toLocaleString('ja-JP')
@@ -48,7 +41,7 @@ export default function GameHUD() {
       {/* Player cards */}
       {players.map((player, idx) => {
         const isActive = idx === currentPlayerIndex
-        const color = PLAYER_COLORS[player.color] || '#E85D04'
+        const color = player.color || '#E85D04'
         const squareName = getSquareName(player.position)
 
         return (

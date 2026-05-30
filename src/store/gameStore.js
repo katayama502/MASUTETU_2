@@ -38,11 +38,11 @@ const PLAYER_ICONS = ['🚃', '🚂', '🚄', '🚅']
 
 // ── Helper functions ───────────────────────────────────────────────────────
 
-function makePlayer(index, name, isBot = false) {
+function makePlayer(index, name, isBot = false, customColor = null) {
   return {
     id: `p${index + 1}`,
     name: name || `プレイヤー${index + 1}`,
-    color: PLAYER_COLORS[index % PLAYER_COLORS.length],
+    color: customColor || PLAYER_COLORS[index % PLAYER_COLORS.length],
     icon: PLAYER_ICONS[index % PLAYER_ICONS.length],
     money: STARTING_MONEY,
     position: 'sq_00',
@@ -135,22 +135,30 @@ export const useGameStore = create(
 
     /**
      * Initialize a new game.
-     * @param {number} playerCount - 1–4
+     * @param {number} playerCount - 1 or 2 human players
      * @param {string[]} playerNames - Array of player name strings
+     * @param {string[]} colors - Array of hex color strings per player
+     * @param {string|null} botName - Name for the bot (1P mode only)
      * @param {number} maxRounds - Override max rounds (default 12)
      */
-    initGame(playerCount = 2, playerNames = [], maxRounds = MAX_ROUNDS_DEFAULT) {
+    initGame(playerCount = 2, playerNames = [], colors = [], botName = null, maxRounds = MAX_ROUNDS_DEFAULT) {
       const count = Math.max(1, Math.min(4, playerCount))
       const players = Array.from({ length: count }, (_, i) =>
-        makePlayer(i, playerNames[i], false)
+        makePlayer(i, playerNames[i], false, colors[i] || null)
       )
 
+      // In 1P mode, add a bot as second player
+      if (count === 1) {
+        players.push(makePlayer(1, botName || 'ますてつBot', true, colors[1] || PLAYER_COLORS[1]))
+      }
+
+      const totalPlayers = players.length
       set({
         ...initialState,
         players,
         maxRounds,
         phase: 'rolling',
-        log: addLog([], `ゲーム開始！${count}人でプレイします。`, 'system'),
+        log: addLog([], `ゲーム開始！${totalPlayers}人でプレイします。`, 'system'),
       })
     },
 

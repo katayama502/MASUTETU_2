@@ -37,9 +37,10 @@ export default function SetupScreen({ onStart, onBack }) {
     for (let i = 0; i < playerCount; i++) {
       resolvedNames.push(names[i].trim() || DEFAULT_NAMES[i])
     }
-    // If vs bot, add bot name
+    // Convert color IDs to hex values for the store
+    const hexColors = colors.map((id) => COLORS.find((c) => c.id === id)?.hex || '#E85D04')
     const botName = playerCount === 1 ? BOT_NAME : null
-    initGame(playerCount, resolvedNames, colors, botName)
+    initGame(playerCount, resolvedNames, hexColors, botName)
     onStart()
   }
 

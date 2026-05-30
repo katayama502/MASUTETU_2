@@ -6,13 +6,6 @@ const CONFETTI_COLORS = [
   '#E85D04', '#FFD700', '#1a4fff', '#2D9E6B', '#9333ea', '#FF69B4', '#00CED1',
 ]
 
-const PLAYER_COLORS = {
-  orange: '#E85D04',
-  blue:   '#1a4fff',
-  green:  '#2D9E6B',
-  purple: '#9333ea',
-}
-
 function ConfettiPiece({ color, left, delay, size, duration }) {
   return (
     <div
@@ -141,7 +134,7 @@ export default function GameOverScreen({ onBackToTitle }) {
 
           <div className="space-y-3">
             {rankedPlayers.map((player, rank) => {
-              const color = PLAYER_COLORS[player.color] || '#E85D04'
+              const color = player.color || '#E85D04'
               const isWinner = rank === 0
               const medalEmoji = rank === 0 ? '🥇' : rank === 1 ? '🥈' : '🥉'
 
@@ -230,7 +223,7 @@ export default function GameOverScreen({ onBackToTitle }) {
             </div>
 
             {rankedPlayers.map((player) => {
-              const color = PLAYER_COLORS[player.color] || '#E85D04'
+              const color = player.color || '#E85D04'
               const visitedShopData = (player.visitedShops || [])
                 .map((id) => (shops || []).find((s) => s.id === id))
                 .filter(Boolean)

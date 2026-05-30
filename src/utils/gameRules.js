@@ -189,16 +189,9 @@ export function applyItemEffect(item, gameState) {
  */
 export function checkWinCondition(gameState) {
   const { players, round, maxRounds, currentPlayerIndex } = gameState
-  const goalSquares = boardData.goalSquares
 
-  // Check if any player is on a goal square
-  for (const player of players) {
-    if (goalSquares.includes(player.position)) {
-      return { winner: player, reason: 'goal' }
-    }
-  }
-
-  // Check if we've exhausted all rounds
+  // Goal square detection is handled directly in landOnSquare.
+  // Here we only check if all rounds are exhausted.
   const isLastTurn =
     round >= maxRounds &&
     currentPlayerIndex === players.length - 1

@@ -1,24 +1,17 @@
 import { useEffect, useRef } from 'react'
 import useGameStore from '../store/gameStore'
 
-// Classify log entry type from text content
-function classifyEntry(text) {
-  if (!text) return 'normal'
-  if (text.includes('+¥') || text.includes('獲得') || text.includes('ボーナス')) return 'gain'
-  if (text.includes('-¥') || text.includes('失') || text.includes('減') || text.includes('支払')) return 'loss'
-  if (text.includes('イベント') || text.includes('🎉')) return 'event'
-  if (text.includes('スタート') || text.includes('開始') || text.includes('🎲')) return 'start'
-  if (text.includes('ゴール') || text.includes('⭐')) return 'goal'
-  return 'normal'
-}
-
+// Map log entry type to display style
 const ENTRY_STYLES = {
-  gain:   { color: '#2D9E6B', icon: '💰', bg: 'rgba(45,158,107,0.06)' },
-  loss:   { color: '#DC2626', icon: '💸', bg: 'rgba(220,38,38,0.06)' },
+  plus:   { color: '#2D9E6B', icon: '💰', bg: 'rgba(45,158,107,0.07)' },
+  shop:   { color: '#E85D04', icon: '🏪', bg: 'rgba(232,93,4,0.07)' },
+  minus:  { color: '#DC2626', icon: '💸', bg: 'rgba(220,38,38,0.07)' },
   event:  { color: '#1a4fff', icon: '🎉', bg: 'rgba(26,79,255,0.06)' },
-  start:  { color: '#E85D04', icon: '🚩', bg: 'rgba(232,93,4,0.06)' },
-  goal:   { color: '#9333ea', icon: '⭐', bg: 'rgba(147,51,234,0.06)' },
-  normal: { color: '#4a3818', icon: '▪', bg: 'transparent' },
+  item:   { color: '#9333ea', icon: '🎁', bg: 'rgba(147,51,234,0.06)' },
+  roll:   { color: '#8b6914', icon: '🎲', bg: 'transparent' },
+  turn:   { color: '#8b6914', icon: '▶', bg: 'transparent' },
+  system: { color: '#C93E0E', icon: '⭐', bg: 'rgba(232,93,4,0.06)' },
+  info:   { color: '#4a3818', icon: '▪', bg: 'transparent' },
 }
 
 export default function GameLog() {
@@ -28,9 +21,9 @@ export default function GameLog() {
   // Auto-scroll to bottom when new entry arrives
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [log])
+  }, [log.length])
 
-  const recentLog = log.slice(-15)
+  const recentLog = log.slice(-20)
 
   return (
     <div className="flex flex-col h-full min-h-0">
@@ -59,14 +52,16 @@ export default function GameLog() {
         ) : (
           <div className="p-2 space-y-0.5">
             {recentLog.map((entry, i) => {
-              const type = classifyEntry(entry)
-              const style = ENTRY_STYLES[type] || ENTRY_STYLES.normal
+              // entry is { id, message, type, timestamp }
+              const entryType = entry?.type || 'info'
+              const message = entry?.message || String(entry)
+              const style = ENTRY_STYLES[entryType] || ENTRY_STYLES.info
               const isLatest = i === recentLog.length - 1
 
               return (
                 <div
-                  key={i}
-                  className="log-entry flex items-start gap-1.5 px-2 py-1.5 rounded-lg text-xs"
+                  key={entry?.id ?? i}
+                  className="flex items-start gap-1.5 px-2 py-1.5 rounded-lg text-xs"
                   style={{
                     background: isLatest ? style.bg : 'transparent',
                     borderLeft: isLatest ? `2px solid ${style.color}` : '2px solid transparent',
@@ -88,7 +83,7 @@ export default function GameLog() {
                       fontWeight: isLatest ? '500' : '400',
                     }}
                   >
-                    {entry}
+                    {message}
                   </span>
                 </div>
               )
