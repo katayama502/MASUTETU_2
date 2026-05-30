@@ -1,0 +1,98 @@
+[
+  {
+    "id": "item_001",
+    "name": "益田駅弁",
+    "icon": "🍱",
+    "description": "益田駅の名物駅弁。食べると元気が出て、次のターンにサイコロを2つ振れます！（大きい方の目を採用）",
+    "effect": { "type": "double_dice", "value": 1 },
+    "rarity": "common"
+  },
+  {
+    "id": "item_002",
+    "name": "石見神楽の鈴",
+    "icon": "🔔",
+    "description": "石見神楽で使われる縁起の鈴。好きなタイミングで使うと、指定したマスまで移動できます。",
+    "effect": { "type": "move_to", "value": 3 },
+    "rarity": "rare"
+  },
+  {
+    "id": "item_003",
+    "name": "雪舟の墨",
+    "icon": "🖊️",
+    "description": "雪舟が使ったとされる墨。使うと、次のマス目のイベントや効果をなかったことにできます。",
+    "effect": { "type": "skip_landing", "value": 1 },
+    "rarity": "uncommon"
+  },
+  {
+    "id": "item_004",
+    "name": "高津川のアユ",
+    "icon": "🐟",
+    "description": "日本一の清流・高津川で獲れた新鮮なアユ。売るとおこづかいが増えます。",
+    "effect": { "type": "money", "value": 3000 },
+    "rarity": "common"
+  },
+  {
+    "id": "item_005",
+    "name": "石州瓦のお守り",
+    "icon": "🧱",
+    "description": "益田の石州瓦で作ったお守り。次のマイナスイベントを一度だけ無効化します。",
+    "effect": { "type": "shield", "value": 1 },
+    "rarity": "uncommon"
+  },
+  {
+    "id": "item_006",
+    "name": "益田産ほうじ茶",
+    "icon": "🍵",
+    "description": "ほっと一息つける益田産ほうじ茶。使うと、このターンをパスして次のターンは2回サイコロを振れます。",
+    "effect": { "type": "skip", "value": 1 },
+    "rarity": "common"
+  },
+  {
+    "id": "item_007",
+    "name": "人麻呂の和歌巻",
+    "icon": "📜",
+    "description": "柿本人麻呂ゆかりの和歌が書かれた巻物。持っているだけで旅の幸運が上がり、サイコロの目が+1されます。",
+    "effect": { "type": "dice_bonus", "value": 1 },
+    "rarity": "rare"
+  },
+  {
+    "id": "item_008",
+    "name": "石見和紙の地図",
+    "icon": "🗺️",
+    "description": "石見和紙に書かれた益田の地図。使うと、好きなマスに瞬間移動できます！（ゴール不可）",
+    "effect": { "type": "teleport", "value": 1 },
+    "rarity": "legendary"
+  },
+  {
+    "id": "item_009",
+    "name": "益田みかんジュース",
+    "icon": "🍊",
+    "description": "益田産みかんで作ったフレッシュジュース。飲むとおこづかいが少し増えます。",
+    "effect": { "type": "money", "value": 1500 },
+    "rarity": "common"
+  },
+  {
+    "id": "item_010",
+    "name": "山陰本線の切符",
+    "icon": "🎫",
+    "description": "JR山陰本線の特急切符。使うと前に4〜6マス一気に進めます。（ランダム）",
+    "effect": { "type": "move", "value": 5 },
+    "rarity": "uncommon"
+  },
+  {
+    "id": "item_011",
+    "name": "益田漁港の縁起物",
+    "icon": "⚓",
+    "description": "益田漁港で手に入る漁師の縁起物。使うと、他のプレイヤーのおこづかいを1000円もらえます。",
+    "effect": { "type": "steal", "value": 1000 },
+    "rarity": "uncommon"
+  },
+  {
+    "id": "item_012",
+    "name": "益田温泉の湯",
+    "icon": "♨️",
+    "description": "益田の名湯を小瓶に詰めたもの。使うと体力が回復し、次の3ターンはマイナスイベントの効果が半減します。",
+    "effect": { "type": "resist", "value": 3 },
+    "rarity": "rare"
+  }
+]

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e8e0d0" rx="8"/>
+  <rect x="1" y="1" width="398" height="298" fill="none" stroke="#c9b99a" stroke-width="2" rx="8"/>
+
+  <!-- Camera body -->
+  <rect x="145" y="110" width="110" height="80" fill="#b8a88a" rx="10"/>
+  <!-- Camera lens -->
+  <circle cx="200" cy="150" r="28" fill="#8c7a62"/>
+  <circle cx="200" cy="150" r="20" fill="#6b5a46"/>
+  <circle cx="200" cy="150" r="13" fill="#2c2118"/>
+  <circle cx="193" cy="143" r="4" fill="rgba(255,255,255,0.3)"/>
+  <!-- Camera viewfinder bump -->
+  <rect x="168" y="100" width="30" height="14" fill="#b8a88a" rx="4"/>
+  <!-- Camera flash -->
+  <rect x="152" y="104" width="14" height="10" fill="#d4c4a0" rx="2"/>
+
+  <!-- Text label -->
+  <text
+    x="200"
+    y="218"
+    font-family="'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif"
+    font-size="14"
+    font-weight="bold"
+    fill="#7a6a54"
+    text-anchor="middle"
+  >写真準備中</text>
+  <text
+    x="200"
+    y="238"
+    font-family="'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif"
+    font-size="11"
+    fill="#9a8a74"
+    text-anchor="middle"
+  >Photo Coming Soon</text>
+</svg>

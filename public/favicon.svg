@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="#e8541a"/>
+  <!-- Train front shape -->
+  <rect x="18" y="22" width="28" height="20" fill="white" rx="5"/>
+  <!-- Train windows -->
+  <rect x="22" y="26" width="8" height="7" fill="#1a4fff" rx="2"/>
+  <rect x="34" y="26" width="8" height="7" fill="#1a4fff" rx="2"/>
+  <!-- Train bottom -->
+  <rect x="16" y="40" width="32" height="4" fill="white" rx="2"/>
+  <!-- Wheels -->
+  <circle cx="24" cy="46" r="4" fill="white"/>
+  <circle cx="40" cy="46" r="4" fill="white"/>
+  <circle cx="24" cy="46" r="2" fill="#e8541a"/>
+  <circle cx="40" cy="46" r="2" fill="#e8541a"/>
+  <!-- Train top stripe -->
+  <rect x="18" y="22" width="28" height="5" fill="#e8541a" rx="3"/>
+</svg>

@@ -1,0 +1,338 @@
+{
+  "squares": [
+    {
+      "id": "sq_00",
+      "type": "start",
+      "label": "益田駅前\nスタート",
+      "shortLabel": "益田駅",
+      "shopId": null,
+      "position": { "x": 400, "y": 540 },
+      "connections": ["sq_01"]
+    },
+    {
+      "id": "sq_01",
+      "type": "plus",
+      "label": "商店街\n入り口",
+      "shortLabel": "商店街口",
+      "shopId": null,
+      "position": { "x": 310, "y": 520 },
+      "connections": ["sq_02"]
+    },
+    {
+      "id": "sq_02",
+      "type": "shop",
+      "label": "駅前珈琲\nますだや",
+      "shortLabel": "珈琲店",
+      "shopId": "shop_001",
+      "position": { "x": 225, "y": 490 },
+      "connections": ["sq_03"]
+    },
+    {
+      "id": "sq_03",
+      "type": "shop",
+      "label": "益田ラーメン\n縄のれん",
+      "shortLabel": "ラーメン",
+      "shopId": "shop_014",
+      "position": { "x": 148, "y": 448 },
+      "connections": ["sq_04"]
+    },
+    {
+      "id": "sq_04",
+      "type": "shop",
+      "label": "花と緑の市\n益田フラワー",
+      "shortLabel": "花屋",
+      "shopId": "shop_015",
+      "position": { "x": 90, "y": 392 },
+      "connections": ["sq_05"]
+    },
+    {
+      "id": "sq_05",
+      "type": "shop",
+      "label": "海鮮食堂\n浜の幸",
+      "shortLabel": "海鮮食堂",
+      "shopId": "shop_002",
+      "position": { "x": 62, "y": 320 },
+      "connections": ["sq_06"]
+    },
+    {
+      "id": "sq_06",
+      "type": "shop",
+      "label": "スイーツ工房\nふわり",
+      "shortLabel": "スイーツ",
+      "shopId": "shop_026",
+      "position": { "x": 70, "y": 248 },
+      "connections": ["sq_07"]
+    },
+    {
+      "id": "sq_07",
+      "type": "event",
+      "label": "益田川\n河川敷",
+      "shortLabel": "益田川",
+      "shopId": null,
+      "position": { "x": 110, "y": 182 },
+      "connections": ["sq_08"]
+    },
+    {
+      "id": "sq_08",
+      "type": "shop",
+      "label": "益田和菓子\n雪月堂",
+      "shortLabel": "和菓子",
+      "shopId": "shop_003",
+      "position": { "x": 178, "y": 128 },
+      "connections": ["sq_09"]
+    },
+    {
+      "id": "sq_09",
+      "type": "shop",
+      "label": "商店街\nまきの屋",
+      "shortLabel": "文具雑貨",
+      "shopId": "shop_020",
+      "position": { "x": 260, "y": 90 },
+      "connections": ["sq_10"]
+    },
+    {
+      "id": "sq_10",
+      "type": "shop",
+      "label": "商店街餃子\nみのや",
+      "shortLabel": "中華",
+      "shopId": "shop_004",
+      "position": { "x": 348, "y": 68 },
+      "connections": ["sq_11"]
+    },
+    {
+      "id": "sq_11",
+      "type": "shop",
+      "label": "鮎友釣り\n体験",
+      "shortLabel": "釣り体験",
+      "shopId": "shop_027",
+      "position": { "x": 440, "y": 60 },
+      "connections": ["sq_12"]
+    },
+    {
+      "id": "sq_12",
+      "type": "shop",
+      "label": "益田川\n観光ボート",
+      "shortLabel": "観光ボート",
+      "shopId": "shop_005",
+      "position": { "x": 528, "y": 68 },
+      "connections": ["sq_13"]
+    },
+    {
+      "id": "sq_13",
+      "type": "shop",
+      "label": "高津川\nあゆの里",
+      "shortLabel": "鮎料理",
+      "shopId": "shop_016",
+      "position": { "x": 610, "y": 90 },
+      "connections": ["sq_14"]
+    },
+    {
+      "id": "sq_14",
+      "type": "shop",
+      "label": "雪舟庭\n茶房芙蓉",
+      "shortLabel": "茶房",
+      "shopId": "shop_006",
+      "position": { "x": 678, "y": 128 },
+      "connections": ["sq_15"]
+    },
+    {
+      "id": "sq_15",
+      "type": "shop",
+      "label": "石州瓦\nかわら橋",
+      "shortLabel": "石州瓦",
+      "shopId": "shop_017",
+      "position": { "x": 726, "y": 182 },
+      "connections": ["sq_16"]
+    },
+    {
+      "id": "sq_16",
+      "type": "shop",
+      "label": "道の駅\n柿の里",
+      "shortLabel": "道の駅",
+      "shopId": "shop_007",
+      "position": { "x": 748, "y": 248 },
+      "connections": ["sq_17"]
+    },
+    {
+      "id": "sq_17",
+      "type": "shop",
+      "label": "みりん工房\nあまくち",
+      "shortLabel": "みりん",
+      "shopId": "shop_018",
+      "position": { "x": 740, "y": 320 },
+      "connections": ["sq_18"]
+    },
+    {
+      "id": "sq_18",
+      "type": "shop",
+      "label": "日本海岸\nシーサイドカフェ",
+      "shortLabel": "海カフェ",
+      "shopId": "shop_008",
+      "position": { "x": 710, "y": 392 },
+      "connections": ["sq_19"]
+    },
+    {
+      "id": "sq_19",
+      "type": "shop",
+      "label": "益田焼\nつちの音",
+      "shortLabel": "陶芸",
+      "shopId": "shop_021",
+      "position": { "x": 654, "y": 448 },
+      "connections": ["sq_20"]
+    },
+    {
+      "id": "sq_20",
+      "type": "shop",
+      "label": "人麻呂参道\nことぶき",
+      "shortLabel": "土産処",
+      "shopId": "shop_009",
+      "position": { "x": 580, "y": 490 },
+      "connections": ["sq_21"]
+    },
+    {
+      "id": "sq_21",
+      "type": "shop",
+      "label": "益田温泉\n足湯の里",
+      "shortLabel": "足湯",
+      "shopId": "shop_019",
+      "position": { "x": 498, "y": 512 },
+      "connections": ["sq_22"]
+    },
+    {
+      "id": "sq_22",
+      "type": "shop",
+      "label": "地ビール\nホップ工房",
+      "shortLabel": "地ビール",
+      "shopId": "shop_010",
+      "position": { "x": 454, "y": 538 },
+      "connections": ["sq_23"]
+    },
+    {
+      "id": "sq_23",
+      "type": "shop",
+      "label": "柿本神社\nひとまろ庵",
+      "shortLabel": "参道茶屋",
+      "shopId": "shop_022",
+      "position": { "x": 490, "y": 490 },
+      "connections": ["sq_24"]
+    },
+    {
+      "id": "sq_24",
+      "type": "shop",
+      "label": "民芸\nてのひら工房",
+      "shortLabel": "民芸品",
+      "shopId": "shop_011",
+      "position": { "x": 542, "y": 440 },
+      "connections": ["sq_25"]
+    },
+    {
+      "id": "sq_25",
+      "type": "shop",
+      "label": "山の幸直売所\nやまびこ",
+      "shortLabel": "山の幸",
+      "shopId": "shop_023",
+      "position": { "x": 580, "y": 380 },
+      "connections": ["sq_26"]
+    },
+    {
+      "id": "sq_26",
+      "type": "shop",
+      "label": "しおさい市場",
+      "shortLabel": "鮮魚市場",
+      "shopId": "shop_012",
+      "position": { "x": 590, "y": 316 },
+      "connections": ["sq_27"]
+    },
+    {
+      "id": "sq_27",
+      "type": "shop",
+      "label": "益田港\n夕日食堂",
+      "shortLabel": "夕日食堂",
+      "shopId": "shop_024",
+      "position": { "x": 570, "y": 256 },
+      "connections": ["sq_28"]
+    },
+    {
+      "id": "sq_28",
+      "type": "shop",
+      "label": "ゲストハウス\nつばさ屋",
+      "shortLabel": "宿泊",
+      "shopId": "shop_013",
+      "position": { "x": 530, "y": 202 },
+      "connections": ["sq_29"]
+    },
+    {
+      "id": "sq_29",
+      "type": "shop",
+      "label": "石見神楽\n衣装館",
+      "shortLabel": "神楽",
+      "shopId": "shop_025",
+      "position": { "x": 470, "y": 162 },
+      "connections": ["sq_goal_masuda", "sq_goal_sanyake"]
+    },
+    {
+      "id": "sq_goal_masuda",
+      "type": "goal",
+      "label": "益田駅\nゴール！",
+      "shortLabel": "益田駅",
+      "shopId": null,
+      "position": { "x": 400, "y": 300 },
+      "connections": ["sq_00"]
+    },
+    {
+      "id": "sq_goal_sanyake",
+      "type": "goal",
+      "label": "三宅御土居\nゴール！",
+      "shortLabel": "三宅御土居",
+      "shopId": null,
+      "position": { "x": 400, "y": 400 },
+      "connections": ["sq_00"]
+    },
+    {
+      "id": "sq_plus_1",
+      "type": "plus",
+      "label": "日本海で\n大漁！",
+      "shortLabel": "大漁！",
+      "shopId": null,
+      "position": { "x": 200, "y": 300 },
+      "connections": []
+    },
+    {
+      "id": "sq_minus_1",
+      "type": "minus",
+      "label": "嵐で\n足止め",
+      "shortLabel": "嵐",
+      "shopId": null,
+      "position": { "x": 310, "y": 180 },
+      "connections": []
+    },
+    {
+      "id": "sq_item_1",
+      "type": "item",
+      "label": "駅弁\nゲット！",
+      "shortLabel": "駅弁",
+      "shopId": null,
+      "position": { "x": 480, "y": 120 },
+      "connections": []
+    }
+  ],
+  "mainPath": [
+    "sq_00", "sq_01", "sq_02", "sq_03", "sq_04", "sq_05", "sq_06", "sq_07",
+    "sq_08", "sq_09", "sq_10", "sq_11", "sq_12", "sq_13", "sq_14", "sq_15",
+    "sq_16", "sq_17", "sq_18", "sq_19", "sq_20", "sq_21", "sq_22", "sq_23",
+    "sq_24", "sq_25", "sq_26", "sq_27", "sq_28", "sq_29"
+  ],
+  "goalSquares": ["sq_goal_masuda", "sq_goal_sanyake"],
+  "boardWidth": 800,
+  "boardHeight": 600,
+  "squareTypeColors": {
+    "start":    "#e8541a",
+    "shop":     "#1a4fff",
+    "event":    "#9333ea",
+    "item":     "#eab308",
+    "plus":     "#22c55e",
+    "minus":    "#ef4444",
+    "goal":     "#f59e0b",
+    "landmark": "#0891b2"
+  }
+}
